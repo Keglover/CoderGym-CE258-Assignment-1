@@ -841,21 +841,21 @@
             }
         },
         {
-            "series": "Gradient Descent",
+            "series": "Gradient Optimization",
             "level": 1,
             "id": "gd_lvl1_sgd",
-            "algorithm": "UNDEFINED",
+            "algorithm": "Stochastic Gradient Descent",
             "desciption": "Stochastic gradient descent implementation and comparison to pytorch.optim.SGD",
             "interface_protocol": "pytorch_task_v1",
             "requirements": {
-                
+                "validation:" "Implementation's optimzation does not deviate significantly from pytorch.optim.SGD"
             }
         },
         {
             "series": "Gradient Descent",
             "level": 2,
             "id": "gd_lvl2_Nesterov-Momentum",
-            "algorithm": "UNDEFINED",
+            "algorithm": "Stochastic Gradient Descent with Nesterov Momentum",
             "desciption": "Nesterov momentum accelerated gradient compared against level 1 implementation and pytorch.optim.SGD",
             "interface_protocol": "pytorch_task_v1",
             "requirements": {
@@ -865,9 +865,9 @@
         {
             "series": "Gradient Descent",
             "level": 3,
-            "id": "gd_lvl2_adam",
-            "algorithm": "UNDEFINED",
-            "desciption": "Adam implementation that is compared to level 1 and 2 implementations.",
+            "id": "gd_lvl3_rms",
+            "algorithm": "RMSProp",
+            "desciption": "RMSProp optimization methodology that takes leaky average of recent gradient history.",
             "interface_protocol": "pytorch_task_v1",
             "requirements": {
                 
@@ -876,9 +876,9 @@
         {
             "series": "Gradient Descent",
             "level": 4,
-            "id": "gd_lvl2_????",
-            "algorithm": "UNDEFINED",
-            "desciption": "UNDEFINED",
+            "id": "gd_lvl4_adam",
+            "algorithm": "Adam",
+            "desciption": "Adam implementation that combines Adagrad implementation from gd_lvl3_adagrad",
             "interface_protocol": "pytorch_task_v1",
             "requirements": {
                 
