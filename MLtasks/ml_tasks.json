@@ -848,7 +848,7 @@
             "desciption": "Stochastic gradient descent implementation and comparison to pytorch.optim.SGD.",
             "interface_protocol": "pytorch_task_v1",
             "requirements": {
-                "math": "Include the update rule $w_{t+1} = w_t - \eta \nabla L(w_t)$ in the docstring.",
+                "math": "Include the update rule $w_{t+1} = w_t - \\eta \\nabla L(w_t)$ in the docstring.",
                 "implementation": "The use of pytorch.optim.SGD is strictly prohibited, outside of evaluation of the implementation.",
                 "evaluation": "Compute final loss, distance to true optimum, and difference between computed loss and pytorch.optim.SGD."
             }
@@ -861,7 +861,7 @@
             "desciption": "Nesterov momentum accelerated gradient compared against level 1 implementation and pytorch.optim.SGD",
             "interface_protocol": "pytorch_task_v1",
             "requirements": {
-                "math": "Define the look-ahead update: $v_{t+1} = \gamma v_t + \eta \nabla L(w_t - \gamma v_t)$ and $w_{t+1} = w_t - v_{t+1}$",
+                "math": "Define the look-ahead update: $v_{t+1} = \\gamma v_t + \\eta \\nabla L(w_t - \\gamma v_t)$ and $w_{t+1} = w_t - v_{t+1}$",
                 "evaluation": "Compare convergence speed to both gd_lvl1_sgd and pytorch.optim.SGD on the same model."
             }
         },
