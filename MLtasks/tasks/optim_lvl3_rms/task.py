@@ -141,8 +141,10 @@ def main():
     print(f"\nPyTorch RMSProp final val acc: {history_pt['Val Acc'][-1]:.4f}")
     print(f"Experiment RMSProp final val acc: {history_ex['Val Acc'][-1]:.4f}")
 
-    print(f"\nPyTorch RMSProp time elapsed: {history_pt['Time Elapsed']:.2f}")
-    print(f"Experiment RMSProp time elapsed: {history_ex['Time Elapsed']:.2f}\n")
+    print(f"\nPyTorch RMSProp time elapsed: {history_pt['Time Elapsed']:.2f} seconds")
+    print(f"Experiment RMSProp time elapsed: {history_ex['Time Elapsed']:.2f} seconds")
+
+    print() # Print some whitespace before the end of the output
 
     return 0
 

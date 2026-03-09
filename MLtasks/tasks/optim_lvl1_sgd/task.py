@@ -115,12 +115,12 @@ def experiment(optimizer, train, val, model, cost_func=nn.CrossEntropyLoss()):
 def main():
     train_loader, val_loader, input_shape, _ = import_data()
 
-    print("=== PyTorch model optimization ===")
+    print("\n=== PyTorch model optimization ===")
     model_pt    = NeuralNetwork(dim_in=input_shape)
     opt_pt      = torchSGD(model_pt.parameters(), lr=learning_rate)
     history_pt  = experiment(optimizer=opt_pt, train=train_loader, val=val_loader, model=model_pt)
 
-    print("=== Experiment model optimization ===")
+    print("\n=== Experiment model optimization ===")
     model_ex   = NeuralNetwork(dim_in=input_shape)
     opt_ex     = ManualOptimizer(model_ex.parameters(), lr=learning_rate)
     history_ex = experiment(optimizer=opt_ex, train=train_loader, val=val_loader, model=model_ex)
@@ -131,8 +131,10 @@ def main():
     print(f"\nPyTorch SGD final val acc: {history_pt['Val Acc'][-1]:.4f}")
     print(f"Experiment SGD final val acc: {history_ex['Val Acc'][-1]:.4f}")
 
-    print(f"\nPyTorch SGD time elapsed: {history_pt['Time Elapsed']:.2f}")
-    print(f"Experiment SGD time elapsed: {history_ex['Time Elapsed']:.2f}\n")
+    print(f"\nPyTorch SGD time elapsed: {history_pt['Time Elapsed']:.2f} seconds")
+    print(f"Experiment SGD time elapsed: {history_ex['Time Elapsed']:.2f} seconds")
+
+    print() # Print some whitespace before the end of the output
 
     return 0
 

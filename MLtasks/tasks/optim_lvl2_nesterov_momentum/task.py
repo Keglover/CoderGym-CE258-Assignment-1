@@ -137,10 +137,12 @@ def main():
     print(f"Experiment Nesterov final val loss: {history_ex['Val Loss'][-1]:.4f}")
 
     print(f"\nPyTorch Nesterov final val acc: {history_pt['Val Acc'][-1]:.4f}")
-    print(f"Experiment Nesterov final val acc: {history_ex['Val Acc'][-1]:.4f}\n")
+    print(f"Experiment Nesterov final val acc: {history_ex['Val Acc'][-1]:.4f}")
 
-    print(f"\nPyTorch Nesterov time elapsed: {history_pt['Time Elapsed']:.2f}")
-    print(f"Experiment Nesterov time elapsed: {history_ex['Time Elapsed']:.2f}\n")
+    print(f"\nPyTorch Nesterov time elapsed: {history_pt['Time Elapsed']:.2f} seconds")
+    print(f"Experiment Nesterov time elapsed: {history_ex['Time Elapsed']:.2f} seconds")
+
+    print() # Print some whitespace before the end of the output
 
     return 0
     
