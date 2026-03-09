@@ -32,7 +32,7 @@ class NeuralNetwork(nn.Module):
     def forward(self, x):
         return self.model(x)
 
-# The optimizer we are to implement for this task - SGD
+# The optimizer we are to implement for this task - RMSProp
 class ManualOptimizer:
     def __init__(self, params, lr, beta=0.99, eps=1e-8):
         self.params = list(params)

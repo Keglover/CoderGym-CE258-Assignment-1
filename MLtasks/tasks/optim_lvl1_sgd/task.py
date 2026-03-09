@@ -1,6 +1,7 @@
 import sys
 import numpy as np
 import torch
+import time
 import torch.nn as nn
 from torch.optim import SGD as torchSGD
 from torch.utils.data import DataLoader, TensorDataset
@@ -38,15 +39,15 @@ class ManualOptimizer:
         self.lr = lr
 
     def zero_grad(self):
-        for p in self.params:
-            if p.grad is not None:
-                p.grad.zero_()
+        for param in self.params:
+            if param.grad is not None:
+                param.grad.zero_()
 
     def step(self):
         with torch.no_grad():
-            for p in self.params:
-                if p.grad is not None:
-                    p.data = p.data - self.lr * p.grad
+            for param in self.params:
+                if param.grad is not None:
+                    param.data = param.data - self.lr * param.grad
 
 def get_task_metadata() -> dict[str, any]:
     return {
@@ -76,9 +77,9 @@ def accuracy(logits, labels):
     preds = torch.argmax(logits, dim=1)
     return (preds == labels).float().mean().item()
 
-def experiment(optimizer, train, val, model):
-    cost_func = nn.CrossEntropyLoss()
-    history = {'Train Loss': [], 'Val Loss': [], 'Val Acc': []}
+def experiment(optimizer, train, val, model, cost_func=nn.CrossEntropyLoss()):
+    history = {'Train Loss': [], 'Val Loss': [], 'Val Acc': [], 'Time Elapsed': float}
+    start = time.time()
 
     for epoch in range(epochs):
 
@@ -107,6 +108,8 @@ def experiment(optimizer, train, val, model):
                 f"Val Loss: {history['Val Loss'][-1]:.4f}, "
                 f"Val Acc: {history['Val Acc'][-1]:.4f}")
 
+    history['Time Elapsed'] = time.time() - start
+
     return history
 
 def main():
@@ -122,11 +125,14 @@ def main():
     opt_ex     = ManualOptimizer(model_ex.parameters(), lr=learning_rate)
     history_ex = experiment(optimizer=opt_ex, train=train_loader, val=val_loader, model=model_ex)
 
-    print(f"PyTorch SGD final val loss: {history_pt['Val Loss'][-1]:.4f}")
+    print(f"\nPyTorch SGD final val loss: {history_pt['Val Loss'][-1]:.4f}")
     print(f"Experiment SGD final val loss: {history_ex['Val Loss'][-1]:.4f}")
 
-    print(f"PyTorch SGD final val acc: {history_pt['Val Acc'][-1]:.4f}")
+    print(f"\nPyTorch SGD final val acc: {history_pt['Val Acc'][-1]:.4f}")
     print(f"Experiment SGD final val acc: {history_ex['Val Acc'][-1]:.4f}")
+
+    print(f"\nPyTorch SGD time elapsed: {history_pt['Time Elapsed']:.2f}")
+    print(f"Experiment SGD time elapsed: {history_ex['Time Elapsed']:.2f}\n")
 
     return 0
 
