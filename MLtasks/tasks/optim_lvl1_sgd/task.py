@@ -125,7 +125,9 @@ def main():
     opt_ex     = ManualOptimizer(model_ex.parameters(), lr=learning_rate)
     history_ex = experiment(optimizer=opt_ex, train=train_loader, val=val_loader, model=model_ex)
 
-    print(f"\nPyTorch SGD final val loss: {history_pt['Val Loss'][-1]:.4f}")
+    print("\n=== Experiment Results ===")
+
+    print(f"PyTorch SGD final val loss: {history_pt['Val Loss'][-1]:.4f}")
     print(f"Experiment SGD final val loss: {history_ex['Val Loss'][-1]:.4f}")
 
     print(f"\nPyTorch SGD final val acc: {history_pt['Val Acc'][-1]:.4f}")
